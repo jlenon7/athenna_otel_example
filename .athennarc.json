@@ -9,7 +9,8 @@
     "@athenna/queue/providers/QueueProvider",
     "@athenna/queue/providers/WorkerProvider",
     "@athenna/http/providers/HttpRouteProvider",
-    "@athenna/http/providers/HttpServerProvider"
+    "@athenna/http/providers/HttpServerProvider",
+    "@athenna/database/providers/DatabaseProvider"
   ],
   "middlewares": [
     "@athenna/otel/http/OtelMiddleware",
@@ -64,6 +65,34 @@
     "install": {
       "path": "@athenna/core/commands/InstallCommand",
       "registry": "npm"
+    },
+    "make:model": "@athenna/database/commands/MakeModelCommand",
+    "make:seeder": "@athenna/database/commands/MakeSeederCommand",
+    "make:migration": "@athenna/database/commands/MakeMigrationCommand",
+    "make:crud": {
+      "path": "@athenna/database/commands/MakeCrudCommand",
+      "fileCase": "toDotCase"
+    },
+    "db:fresh": {
+      "path": "@athenna/database/commands/DbFreshCommand",
+      "loadApp": true,
+      "loadAllCommands": true
+    },
+    "db:seed": {
+      "path": "@athenna/database/commands/DbSeedCommand",
+      "loadApp": true
+    },
+    "db:wipe": {
+      "path": "@athenna/database/commands/DbWipeCommand",
+      "loadApp": true
+    },
+    "migration:run": {
+      "path": "@athenna/database/commands/MigrationRunCommand",
+      "loadApp": true
+    },
+    "migration:revert": {
+      "path": "@athenna/database/commands/MigrationRevertCommand",
+      "loadApp": true
     }
   },
   "templates": {
@@ -81,9 +110,21 @@
     "interceptor": "node_modules/@athenna/http/templates/interceptor.edge",
     "terminator": "node_modules/@athenna/http/templates/terminator.edge",
     "worker": "node_modules/@athenna/queue/templates/worker.edge",
-    "view": "node_modules/@athenna/view/templates/view.edge"
+    "view": "node_modules/@athenna/view/templates/view.edge",
+    "model": "node_modules/@athenna/database/templates/model.edge",
+    "seeder": "node_modules/@athenna/database/templates/seeder.edge",
+    "migration": "node_modules/@athenna/database/templates/migration.edge",
+    "crud-model": "node_modules/@athenna/database/templates/crud-model.edge",
+    "crud-migration": "node_modules/@athenna/database/templates/crud-migration.edge",
+    "crud-service": "node_modules/@athenna/database/templates/crud-service.edge",
+    "crud-controller": "node_modules/@athenna/database/templates/crud-controller.edge",
+    "crud-service-test": "node_modules/@athenna/database/templates/crud-service-test.edge",
+    "crud-controller-test": "node_modules/@athenna/database/templates/crud-controller-test.edge"
   },
   "workers": [
     "#src/workers/app.worker"
+  ],
+  "models": [
+    "#src/models/user"
   ]
 }

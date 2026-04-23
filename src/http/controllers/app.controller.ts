@@ -1,6 +1,6 @@
-import { Otel } from '@athenna/otel'
 import { Log } from '@athenna/logger'
 import { Inject } from '@athenna/ioc'
+import { Otel, Span } from '@athenna/otel'
 import { AppService } from '#src/services/app.service'
 import { Controller, type Context } from '@athenna/http'
 
@@ -11,6 +11,7 @@ export class AppController {
   @Inject()
   private readonly appService: AppService
 
+  @Span()
   public async show({ response }: Context) {
     /**
      * Overwrite the context value for the exampleId key.
@@ -25,7 +26,11 @@ export class AppController {
     this.logger.info({ msg: 'AppController.show' })
 
     const data = await this.appService.findOne()
+    const users = await this.appService.findAll()
 
-    return response.status(200).send(data)
+    return response.status(200).send({
+      data,
+      users
+    })
   }
 }
