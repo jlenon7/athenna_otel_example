@@ -54,6 +54,16 @@ export default {
     ignoreStatuses: []
   },
 
+  otel: {
+    contextEnabled: true,
+    contextBindings: [
+      {
+        key: 'exampleId',
+        resolve: ctx => ctx.request.headers['x-example-id'] || 'example-id-from-http'
+      }
+    ]
+  },
+
   /*
   |--------------------------------------------------------------------------
   | Configurations for @fastify/cors plugin.
@@ -89,7 +99,7 @@ export default {
   */
 
   rTracer: {
-    enabled: true,
+    enabled: false,
     echoHeader: false,
     useHeader: false,
     headerName: 'X-Request-Id',

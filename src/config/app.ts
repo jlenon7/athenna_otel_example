@@ -119,6 +119,7 @@ export default {
   | Define some options on how the application will handle logging.
   |
   */
+
   logger: {
     prettifyException: Env('LOG_PRETTY', true)
   }

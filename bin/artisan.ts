@@ -1,3 +1,4 @@
+import '#bin/otel'
 import { Ignite } from '@athenna/core'
 
 const ignite = await new Ignite().load(import.meta.url, { bootLogs: false })

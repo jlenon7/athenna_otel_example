@@ -1,4 +1,5 @@
 import { Path } from '@athenna/common'
+import { Otel } from '@athenna/otel'
 
 export default {
   /*
@@ -38,7 +39,19 @@ export default {
       driver: 'console',
       level: 'trace',
 
-      formatter: 'simple'
+      formatter: 'json',
+      formatterConfig: {
+        contextBindings: [
+          {
+            field: 'exampleId',
+            resolve: ctx => Otel.getCurrentContextValue('exampleId', ctx)
+          },
+          {
+            field: 'foo',
+            resolve: ctx => Otel.getCurrentContextValue('foo', ctx)
+          }
+        ]
+      }
     },
 
     exception: {

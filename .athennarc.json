@@ -1,10 +1,15 @@
 {
   "services": ["#src/services/app.service"],
   "providers": [
+    "@athenna/otel/providers/OtelProvider",
     "@athenna/core/providers/CoreProvider",
     "@athenna/view/providers/ViewProvider",
     "@athenna/http/providers/HttpRouteProvider",
     "@athenna/http/providers/HttpServerProvider"
+  ],
+  "middlewares": [
+    "@athenna/otel/http/OtelMiddleware",
+    "@athenna/otel/http/OtelTerminator"
   ],
   "controllers": ["#src/http/controllers/app.controller"],
   "commands": {
