@@ -20,11 +20,11 @@ export class AppController {
     /**
      * Add a new context value that is not defined in the context bindings.
      */
-    Otel.setCurrentContextValue('foo', 'bar')
+    Otel.setCurrentContextValue('foo', 'bar-from-controller')
 
     this.logger.info({ msg: 'AppController.show' })
 
-    const data = this.appService.findOne()
+    const data = await this.appService.findOne()
 
     return response.status(200).send(data)
   }

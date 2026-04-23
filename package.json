@@ -32,6 +32,7 @@
     "@athenna/ioc": "^5.2.0",
     "@athenna/logger": "^5.19.0",
     "@athenna/otel": "^5.13.0",
+    "@athenna/queue": "^5.26.0",
     "@athenna/view": "^5.4.0",
     "@fastify/cors": "^10.1.0",
     "@fastify/helmet": "^13.0.2",

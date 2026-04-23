@@ -1,9 +1,13 @@
 {
-  "services": ["#src/services/app.service"],
+  "services": [
+    "#src/services/app.service"
+  ],
   "providers": [
     "@athenna/otel/providers/OtelProvider",
     "@athenna/core/providers/CoreProvider",
     "@athenna/view/providers/ViewProvider",
+    "@athenna/queue/providers/QueueProvider",
+    "@athenna/queue/providers/WorkerProvider",
     "@athenna/http/providers/HttpRouteProvider",
     "@athenna/http/providers/HttpServerProvider"
   ],
@@ -11,7 +15,9 @@
     "@athenna/otel/http/OtelMiddleware",
     "@athenna/otel/http/OtelTerminator"
   ],
-  "controllers": ["#src/http/controllers/app.controller"],
+  "controllers": [
+    "#src/http/controllers/app.controller"
+  ],
   "commands": {
     "configure": "@athenna/artisan/commands/ConfigureCommand",
     "route:list": "@athenna/http/commands/RouteListCommand",
@@ -27,6 +33,7 @@
     "make:interceptor": "@athenna/http/commands/MakeInterceptorCommand",
     "make:terminator": "@athenna/http/commands/MakeTerminatorCommand",
     "make:view": "@athenna/view/commands/MakeViewCommand",
+    "make:worker": "@athenna/queue/commands/MakeWorkerCommand",
     "serve": {
       "path": "@athenna/core/commands/ServeCommand",
       "stayAlive": true
@@ -73,6 +80,10 @@
     "middleware": "node_modules/@athenna/http/templates/middleware.edge",
     "interceptor": "node_modules/@athenna/http/templates/interceptor.edge",
     "terminator": "node_modules/@athenna/http/templates/terminator.edge",
+    "worker": "node_modules/@athenna/queue/templates/worker.edge",
     "view": "node_modules/@athenna/view/templates/view.edge"
-  }
+  },
+  "workers": [
+    "#src/workers/app.worker"
+  ]
 }

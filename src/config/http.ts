@@ -1,4 +1,5 @@
 import { Path } from '@athenna/common'
+import type { Context } from '@athenna/http'
 
 export default {
   /*
@@ -59,7 +60,7 @@ export default {
     contextBindings: [
       {
         key: 'exampleId',
-        resolve: ctx => ctx.request.headers['x-example-id'] || 'example-id-from-http'
+        resolve: (ctx: Context) => ctx.request.headers['x-example-id'] || 'example-id-from-http'
       }
     ]
   },
