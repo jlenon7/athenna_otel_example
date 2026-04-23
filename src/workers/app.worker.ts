@@ -1,10 +1,14 @@
 import { Log } from '@athenna/logger'
-import { User } from '#src/models/user'
+import { Inject } from '@athenna/ioc'
 import { Otel, Span } from '@athenna/otel'
 import { Queue, Worker, type Context } from '@athenna/queue'
+import { AppService } from '#src/services/app.service'
 
 @Worker()
 export class AppWorker {
+  @Inject()
+  public readonly appService: AppService
+
   private readonly logger = Log.create({ namespace: AppWorker.name })
 
   @Span()
@@ -19,6 +23,6 @@ export class AppWorker {
 
     this.logger.info({ msg: 'AppWorker.handle', attempts: ctx.job.attempts, data: ctx.job.data })
 
-    await User.findMany()
+    await this.appService.findAll()
   }
 }
